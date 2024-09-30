@@ -43,6 +43,19 @@ def find_greatest_product(number_string, adjacent_digits=13):
     
     # Your code here
 
+    # create a reading frame by assigning the start and stop index to a variable
+    start = 0 # first index of frame
+    end = adjacent_digits - 1 # 13th index of frame, we do -1 because the 13th index is actually the 14th number but we just want the 13th number 
+
+    while end < len(number_string): # this loop is go on till the statement breaks and the 13th index falls off the end of the string 
+        frame = number_string[start:end] # set variable frame to the indices we previously declared
+        prodFrame = 1 # initialize a variable = 1 to add the products of each frame to later 
+        for character in frame: # because the number is a string, we iterate through each character in the frame we made
+            prodFrame = prodFrame * int(character) # convert each character in the frame to an int, multiply them to prodFrame which we set to 1 previously, and reassign to prodFrame
+        max_product = max(max_product, prodFrame) # max() allows us to compare 2 numbers so we compare with max_product, which gets replaced if prodFrame is greater
+        start += 1 # move the start of the frame up 1
+        end += 1 # move the end of the frame up 1 
+
     return max_product
 
 if __name__ == "__main__":
